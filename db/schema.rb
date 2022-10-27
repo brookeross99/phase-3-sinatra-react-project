@@ -12,18 +12,21 @@
 
 ActiveRecord::Schema.define(version: 2022_10_21_183352) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "entries", force: :cascade do |t|
     t.string "name"
     t.string "image_url"
     t.string "location"
     t.string "description"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "entry_id"
+    t.bigint "user_id"
+    t.bigint "entry_id"
     t.index ["entry_id"], name: "index_favorites_on_entry_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
